@@ -62,47 +62,65 @@ namespace AnimalNamePicker_CPW212
 
             int animalNum;
 
-            if(!int.TryParse(input, out animalNum) || Convert.ToInt32(input) < 1 || Convert.ToInt32(input) > 5)
+            if (!int.TryParse(input, out animalNum) || Convert.ToInt32(input) < 1 || Convert.ToInt32(input) > 5)
             {
                 Console.WriteLine("Invalid number selection!");
                 AnimalNum();
             }
 
-             return animalNum;         
+            return animalNum;
         }
 
         private static List<string> AssignNames(string animal, int animalNum)
         {
+            var random = new Random();
             List<string> namedAnimals = new List<string>();
+            List<string> animalNames = new List<string>();
 
-            List<string> cowNames = new List<string>()
-            { 
-                "Moo-Moo","Cheddar","Burrito","Baby-Bell","Strawberry","Cozie","Bessie","Snowflake",
-                "Barley","Beans"
-            };
-
-            List<string> pigNames = new List<string>()
+            if (animal.Equals("cow"))
             {
-                "Popcorn","Sunflower","Dandelion","Mango","Clover","Olive","Peach","Plum","Raindrop", 
-                    "Charlotte","Petra"
-            };
-
-            List<string> sheepNames = new List<string>()
+                animalNames.AddRange(new List<string>()
+                {
+                    "Moo-Moo","Cheddar","Burrito","Baby-Bell","Strawberry","Cozie","Bessie","Snowflake",
+                    "Barley","Beans"
+                });
+            }
+            else if (animal.Equals("pig"))
             {
-                "Juna", "Pluto","Poppy", "Thea", "Bonnie", "Buttons","Apple", "Juniper", "Pumpkin",
-                "Apricot", "Bo-Peep"
-            };
-
-            List<string> chickenNames = new List<string>()
+                animalNames.AddRange(new List<string>()
+                {
+                    "Popcorn","Sunflower","Dandelion","Mango","Clover","Olive","Peach","Plum","Raindrop",
+                        "Charlotte","Petra"
+                });
+            }
+            else if (animal.Equals("sheep"))
             {
-                "Buttercup", "Patchley", "Gumball", "Pebble","Panini", "Sprout", "Blu", "Cadbury",
-                    "Frenchie", "Ditalini"
-            };
+                animalNames.AddRange(new List<string>()
+                {
+                    "Juna", "Pluto","Poppy", "Thea", "Bonnie", "Buttons","Apple", "Juniper", "Pumpkin",
+                    "Apricot", "Bo-Peep"
+                });
+            }
+            else
+            {
+                animalNames.AddRange(new List<string>()
+                {
+                    "Buttercup", "Patchley", "Gumball", "Pebble","Panini", "Sprout", "Blu", "Cadbury",
+                        "Frenchie", "Ditalini"
+                });
+            }
 
 
-
+            for (int i = 0; i < animalNum; i++)
+            {
+                int index = random.Next(animalNames.Count);
+                Console.WriteLine(animalNames[index]);
+            }
 
             return namedAnimals;
         }
     }
 }
+
+       
+
