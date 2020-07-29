@@ -17,18 +17,19 @@ namespace AnimalNamePicker_CPW212
             // Method that gets and returns type of animal
             string animal = AnimalType();
 
-            // Create Method that gets and returns animal number
+            // Method that gets and returns animal number
             int animalNum = AnimalNum();
 
-            // Create Method that selects animal names and returns list 
+            // Method that selects animal name list based on animal type and returns list 
             List<string> animalNames = new List<string>();
             animalNames = AssignNames(animal, animalNum);
 
-            // Create Method that prints list 
-            PrintNames(animalNames, animalNum);
+            // Method that prints named animal list 
+            PrintNames(animalNames, animalNum, animal);
 
+            // Method that asks the user if they would like to go again
+            GoAgain();
 
-            Console.ReadKey();
         }
 
         private static string AnimalType()
@@ -43,7 +44,6 @@ namespace AnimalNamePicker_CPW212
             "pig",
             "sheep",
             "chicken",
-            "horse"
             };
 
 
@@ -73,6 +73,7 @@ namespace AnimalNamePicker_CPW212
             return animalNum;
         }
 
+        // The animals are named after my animals in Stardew Valley! 
         private static List<string> AssignNames(string animal, int animalNum)
         {
             List<string> animalNames = new List<string>();
@@ -101,7 +102,7 @@ namespace AnimalNamePicker_CPW212
                     "Apricot", "Bo-Peep"
                 });
             }
-            else
+            else if (animal.Equals("chicken"))
             {
                 animalNames.AddRange(new List<string>()
                 {
@@ -114,24 +115,39 @@ namespace AnimalNamePicker_CPW212
             return animalNames;
         }
 
-        private static void PrintNames(List<string> animalNames, int animalNum)
+        private static void PrintNames(List<string> animalNames, int animalNum, string animal)
         {
             List<string> namedAnimals = new List<string>();
+
+
+            Console.WriteLine($"Your " + animalNum + " " + animal + "'s will be named: ");
 
             for (int i = 0; i < animalNum; i++)
             {
                 var random = new Random();
                 int index = random.Next(animalNames.Count);
-                Console.WriteLine(animalNames[index]);
+                Console.WriteLine(animalNames[index - 1]);
                 namedAnimals.Add(animalNames[index]);
-                animalNames.RemoveAt(index);
+                animalNames.RemoveAt(index - 1);
             }
         }
 
-        
-            
+        private static void GoAgain()
+        {
+            Console.WriteLine("Would you like to go again? (Yes/No)");
+            string input = Console.ReadLine();
 
-}
+            if(input.Equals("Yes"))
+            {
+                Main(null);
+            }
+
+            else
+            {
+                Console.ReadKey();
+            }
+        }
+    }
 }
 
        
