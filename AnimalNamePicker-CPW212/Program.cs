@@ -21,9 +21,11 @@ namespace AnimalNamePicker_CPW212
             int animalNum = AnimalNum();
 
             // Create Method that selects animal names and returns list 
-            AssignNames(animal, animalNum);
+            List<string> animalNames = new List<string>();
+            animalNames = AssignNames(animal, animalNum);
 
             // Create Method that prints list 
+            PrintNames(animalNames, animalNum);
 
 
             Console.ReadKey();
@@ -73,8 +75,6 @@ namespace AnimalNamePicker_CPW212
 
         private static List<string> AssignNames(string animal, int animalNum)
         {
-            var random = new Random();
-            List<string> namedAnimals = new List<string>();
             List<string> animalNames = new List<string>();
 
             if (animal.Equals("cow"))
@@ -111,15 +111,27 @@ namespace AnimalNamePicker_CPW212
             }
 
 
+            return animalNames;
+        }
+
+        private static void PrintNames(List<string> animalNames, int animalNum)
+        {
+            List<string> namedAnimals = new List<string>();
+
             for (int i = 0; i < animalNum; i++)
             {
+                var random = new Random();
                 int index = random.Next(animalNames.Count);
                 Console.WriteLine(animalNames[index]);
+                namedAnimals.Add(animalNames[index]);
+                animalNames.RemoveAt(index);
             }
-
-            return namedAnimals;
         }
-    }
+
+        
+            
+
+}
 }
 
        
